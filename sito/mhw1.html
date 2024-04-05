@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik">
     <title>mhw1</title>
+    <script src="sito.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
@@ -18,63 +19,110 @@
     <header>
         <img id="im_header" src="https://www.finalround.it/img/logo.svg?v=1">
         <nav id="flexcontainer1nav">
-            <a class="flexitemnav1" href="mario.png"> PRIMA PAGINA</a>
-            <a class="flexitemnav1" href="mario.png"> ANTEPRIME</a>
-            <a class="flexitemnav1" href="mario.png"> RECENSIONI </a>
-            <a class="flexitemnav1" href="mario.png"> MONOGRAFIE </a>
-            <a class="flexitemnav1" href="mario.png"> ATTUALITA'</a>
+            <a class="flexitemnav1" href="imgs/mario.png"> PRIMA PAGINA</a>
+            <a class="flexitemnav1" href="imgs/mario.png"> ANTEPRIME</a>
+            <a class="flexitemnav1" href="imgs/mario.png"> RECENSIONI </a>
+            <a class="flexitemnav1" href="imgs/mario.png"> MONOGRAFIE </a>
+            <a class="flexitemnav1" href="imgs/mario.png"> ATTUALITA'</a>
             
         </nav>
 
         <nav id="flexcontainer2nav">
-            <a class="flexitemnav2" href="mario.png"> qualsiasi </a>
-            <a class="flexitemnav2" href="mario.png"> ps5 </a>
-            <a class="flexitemnav2" href="mario.png"> xbox </a>
-            <a class="flexitemnav2" href="mario.png"> switch </a>
-            <a class="flexitemnav2" href="mario.png"> pc masterrace </a>
+            <a class="flexitemnav2" href="imgs/mario.png"> qualsiasi </a>
+            <a class="flexitemnav2" href="imgs/mario.png"> ps5 </a>
+            <a class="flexitemnav2" href="imgs/mario.png"> xbox </a>
+            <a class="flexitemnav2" href="imgs/mario.png"> switch </a>
+            <a class="flexitemnav2" href="imgs/mario.png"> pc masterrace </a>
         </nav>
 
-        <img id="menu_button" src="icons8-menu-100.png">
+        <img id="menu_button" src="imgs/icons8-menu-100.png">
     </header>
 
     <section>
         <div id="flex_container_section">
+
+
+            <!-- left-->
             <div class="left_flex_cont">
                 <article class="flex_item_article_left">
                     <a class="img_link" href="www.finalround.it_.png"><img class="article_image_left"
-                            src="rabbia.jpeg">
+                            src="imgs/rabbia.jpeg">
                         <span class="tag"> ATTUALITA </span> </a>
 
-                    <h1 class="side_header"> Altrimenti ci arrabbiamo </h1>
+                        <a class="img_link" href="www.finalround.it_.png"> 
+                            <h1 class="side_header"> Altrimenti ci arrabbiamo </h1> </a>
                     <p class="sottotitolo">Negli ultimi anni i videogiochi difficili sono diventati mainstream</p>
                     <p class="autore"> di Alfio Rapisarda </p>
 
                 </article>
                 <article class="flex_item_article_left">
-                    <a class="img_link" href="www.finalround.it_.png"><img class="article_image_left" src="mario.png">
+                    <a class="img_link" href="www.finalround.it_.png"><img class="article_image_left" src="imgs/mario.png">
                         <span class="tag"> RECENSIONE </span> </a>
 
-                    <h1 class="side_header"> Kizaru sta bluffando?</h1>
+                        <a class="img_link" href="www.finalround.it_.png">
+                            <h1 class="side_header"> Kizaru sta bluffando?</h1> </a>
                     <p class="sottotitolo">Sappiamo che un giorno onepiece finirà...forse</p>
                     <p class="autore"> di Simone Spasentino </p>
                 </article>
             </div>
+
+
+
+
+
+
             <!-- middle-->
-            <article id="flex_item_article_middle">
-                <a class="img_link" href="www.finalround.it_.png"> <img class="article_image_middle" src="college.png">
-                    <span class="tag"> ANTEPRIMA </span> </a>
+            <div id="flex_container_middle">
+                <article id="flex_item_article_middle">
+                    <a class="img_link" href="www.finalround.it_.png"> <img class="article_image_middle" src="imgs/college.png">
+                        <span class="tag"> ANTEPRIMA </span> </a>
 
-                <h1 id="middle_article_header"> Wise stickman vs instant gratification monkey</h1>
-                <p class="sottotitolo"> Inside the mind of a master procrastinator</p>
-                <p class="autore"> di Ennio Guelfo </p>
+                        <a class="img_link" href="www.finalround.it_.png">
+                            <h1 class="middle_article_header"> Wise stickman vs instant gratification monkey</h1> </a>
+                    <p class="sottotitolo"> Inside the mind of a master procrastinator</p>
+                    <p class="autore"> di Ennio Guelfo </p>
+                        
+                </article>
 
-            </article>
+                <button id="mostra-altro"> mostra </button>
+                
+                <div class="middle-flex-cont"> 
+                     <article class="mid_flex_article"> 
+                        <a class="img_link" href="www.finalround.it_.png"> 
+                            <img class="article_mid_img" src="imgs/college.png"> <span class="tag"> a </span>
+                        </a>
+                        <a class="img_link" href="www.finalround.it_.png">
+                            <h1 class="middle_article_header"> header</h1> </a>
+                        <p class="sottotitolo"> aaoisnfoai</p>
+                        <p class="autore"> di zio turi</p>
+                    </article>
+
+                    <article class="mid_flex_article"> 
+                        <a class="img_link" href="www.finalround.it_.png"> 
+                            <img class="article_mid_img" src="imgs/college.png"> <span class="tag"> a </span>
+                        </a>
+                        <a class="img_link" href="www.finalround.it_.png">
+                            <h1 class="middle_article_header"> tito</h1> </a>
+                        <p class="sottotitolo"> aaoisnfoai</p>
+                        <p class="autore"> di zio turi</p>
+                    </article>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
             <!-- right -->
             <div id="right_flex_cont">
                 <article class="flex_item_article_right">
-                    <a class="img_link" href="www.finalround.it_.png"> <img class="article_image_right" src="bill.jpeg">
+                    <a class="img_link" href="www.finalround.it_.png"> <img class="article_image_right" src="imgs/bill.jpeg">
                         <span class="tag"> MONOGRAFIA </span> </a>
-                    <h1 class="side_header">Bill clinton ed elden ring</h1>
+                        <a class="img_link" href="www.finalround.it_.png">
+                            <h1 class="side_header">Bill clinton ed elden ring</h1> </a>
                     <p class="sottotitolo"> Come l'ex-presidente ha salvato i videogiochi open-world</p>
                     <p class="autore"> di Fabio Catanese </p>
                 </article>
@@ -88,9 +136,9 @@
         <div id="footer_info"> <img id="footer_img" src="https://www.finalround.it/img/pittogramma.svg">
         </div>
         <div class="flex_container_footer">
-            <a class="flex_item_footer" href="mario.png"> chi siamo </a>
-            <a class="flex_item_footer" href="mario.png"> ciao</a>
-            <a class="flex_item_footer" href="mario.png"> info </a>
+            <a class="flex_item_footer" href="imgs/mario.png"> chi siamo </a>
+            <a class="flex_item_footer" href="imgs/mario.png"> ciao</a>
+            <a class="flex_item_footer" href="imgs/mario.png"> info </a>
         </div>
 
         <div id="footer_final"> final round by giuseppe</div>
@@ -98,13 +146,11 @@
     </footer>
 </body>
 
-<!-- utilizzare flexbox. nav header section article footer . tag testo su immagini . layout e sfondo: margin,
-         padding, height, position, border , border-radius, background-color ;
-font: font-weight, font-style, font-family, font-size, color, line-height;  utilizzare almeno un font da Google Fonts;
-utilizzare media query per adattare la pagina a dispositivi mobile.
+<!-- fixare mobile mode media queries.
 
-font e design testo
-sistemare tags
+    idealmente link ad ogni header
+    idealmente bottone design non bottone grigio  mostra altro
+    idealmente container di ogni immagine con transizione e zoom
 
 -->
 
