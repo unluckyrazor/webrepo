@@ -355,7 +355,34 @@ p {
     
 }
 
+.arrow{
+    width: 100px;
+    height: 100px;
+    z-index: 200;
+    border: 5px black;
+    position: absolute;
+    right: 27.7vw;
+    bottom: 35vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
+.star{
+    position: absolute;
+    width: 40px;
+    right: 27.7vw;
+}
+
+.fav{
+    background-color: red;
+}
+
+.flex{
+    display: flex;
+}
+
+.block{
+    display: block;
+}
 
 
 
@@ -472,6 +499,7 @@ body {
     height: 25vh;
     overflow: hidden;
     border-radius: 5%;
+    position: relative;
     
 }
  

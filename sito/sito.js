@@ -1,5 +1,5 @@
 function onHover() {
-    console.log("cliccato");
+    
     const article_image=document.querySelector('.article_image_middle')
     
     article_image.src="imgs/mario.png";
@@ -7,16 +7,20 @@ function onHover() {
 
 }
 
+function cambiaMidImage() {
+    console.log("cliccato");
+    midImage.src="imgs/mario.png";
+}
 
 function Mostra() {
     const cont_middle = document.querySelector('.middle-flex-cont'); 
     console.log("mostrando");
-    cont_middle.style.display = 'flex';
+    cont_middle.classList.add('flex')
     const item_middle = document.querySelectorAll('.mid_flex_article'); 
     
     for (let i of item_middle) {
     console.log("mostrando");
-    i.style.display = 'block'; 
+    i.classList.add('block');
     }
 
     button_altro.remove();
@@ -24,50 +28,54 @@ function Mostra() {
     // poi questo dovrebbe caricare un tot di articoli 
 }
 
+
+function favItem() { 
+    star_fav.classList.add('fav');  
+}
+
+function provaAccedi(){
+    flex_item_article_middle.remove();
+    const accedi = document.createElement('input');
+    flex_container_middle.appendChild(accedi);
+}
+
+// pulsante che mostra altri articoi
 const button_altro = document.querySelector("#mostra-altro")
 button_altro.addEventListener("click", Mostra);
 
 
+
+
+//questa è una prova di ascoltare il mouse che va sopra ad una immagine e cambiava l'immagine l'ho tolto
+//const mid_image_container = document.querySelector(".mid_image_container");
+// mid_image_container.addEventListener("mouseover", onHover);
+
 // voglio una arrow in overlay sul'articolo principlae che mi cambia immagine 
 // e testo al massimo . 
+const arrow_button = document.querySelector(".arrow");
+const midImage = document.querySelector(".big_article_image_middle")
+arrow_button.addEventListener("click", cambiaMidImage);;
 
-// zoom immagini quando hovero.
-// prova hovver 
-// hover on image makes grey filter too
+//pulsante preferito cambia colore quando lo clicco
 
-const image_link = document.querySelectorAll(".img_link");
+const star_fav = document.querySelector(".star");
+star_fav.addEventListener("click", favItem);
 
-for(let i of image_link) {
-    i.addEventListener("mouseover", onHover);
-}
-
-
-
-
-// bottone mostra immagini  
+// mettera delle caselle di testo 
+const bottone =  document.querySelector(".accedi");
+bottone.addEventListener("click", provaAccedi)
 
 
-
-
-
-
-
-// mostra altri quando scorro(? clicco)
-// modificare img source quando hover
-
-// create element in qualche maniera 
-// pulsante freccia che cambia articolo o img
-// tasto mi piace sull'articolo che cambia icona una volta premuto 
-// atributi data -*
 
 
 
 /* Mini-homework 2
 
-usare document.createElement() per creare dinamicamente oggetti HTML a partire da contenuti definiti in JavaScript;
-modificare dinamicamente l’URL di un’immagine tramite l’attributo src;
-modificare dinamicamente la classe degli elementi agendo sulla proprietà classList;
-mostrare o nascondere dinamicamente parti della pagina assegnando o rimuovendo classi CSS che modificano la proprietà display;
+usare document.createElement() per creare dinamicamente oggetti HTML a partire da contenuti definiti in JavaScript; ok 
+modificare dinamicamente l’URL di un’immagine tramite l’attributo src; ok
+modificare dinamicamente la classe degli elementi agendo sulla proprietà classList; ok
+mostrare o nascondere dinamicamente parti della pagina assegnando o rimuovendo classi CSS che modificano la proprietà display; ok
+
 utilizzare attributi data-*.
 
 
@@ -78,5 +86,6 @@ Alcuni esempi di funzionalità che potete aggiungere sono le seguenti:
 pulsante “leggi di più”, che mostra o nasconde dinamicamente alcuni elementi;
 cambiare una o più immagini della pagina quando l’utente clicca o si muove sopra certi elementi;
 aggiungere una classe “preferito” (con conseguenti modifiche estetiche definite in CSS) quando l’utente clicca su certi elementi della pagina;
+
 conservare informazioni negli attributi data-*, da usare per mostrare dati aggiuntivi quando l’utente clicca o si muove sopra certi elementi.
 */
