@@ -37,6 +37,8 @@ function provaAccedi(){
     flex_item_article_middle.remove();
     const accedi = document.createElement('input');
     flex_container_middle.appendChild(accedi);
+    button_altro.remove();
+    bottone.remove();
 }
 
 // pulsante che mostra altri articoi
