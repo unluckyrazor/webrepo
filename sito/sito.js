@@ -1,8 +1,25 @@
 function onHover() {
     
-    const article_image=document.querySelector('.article_image_middle')
+    console.log("hoverato");
+    const article = document.querySelector("#flex_item_article_middle");
     
-    article_image.src="imgs/mario.png";
+    //prende la data segnata nell'articolo e la appende all'articolo
+
+    
+    console.log("hoverato");
+    
+    flex_item_article_middle.appendChild(date);
+    date.textContent=article.dataset.date;
+    header_middle.removeEventListener("mouseover", onHover);
+   
+
+
+}
+
+function onLeave(){
+    // quando tolgo il mouse sparisce la data 
+    date.remove();
+    header_middle.addEventListener("mouseover", onHover);
 
 
 }
@@ -67,8 +84,15 @@ star_fav.addEventListener("click", favItem);
 const bottone =  document.querySelector(".accedi");
 bottone.addEventListener("click", provaAccedi)
 
+//hover su titolo dell'articolo mid e spunta la data passata come data-* in html
+// quando tolgo il mouse toglie la data
 
+const date = document.createElement('span');
+date.classList="data";
+const header_middle= document.querySelector(".middle_article_header");
 
+header_middle.addEventListener("mouseover", onHover);
+header_middle.addEventListener("mouseleave", onLeave);
 
 
 /* Mini-homework 2
@@ -77,8 +101,7 @@ usare document.createElement() per creare dinamicamente oggetti HTML a partire d
 modificare dinamicamente l’URL di un’immagine tramite l’attributo src; ok
 modificare dinamicamente la classe degli elementi agendo sulla proprietà classList; ok
 mostrare o nascondere dinamicamente parti della pagina assegnando o rimuovendo classi CSS che modificano la proprietà display; ok
-
-utilizzare attributi data-*.
+utilizzare attributi data-*. ok
 
 
 
@@ -88,6 +111,5 @@ Alcuni esempi di funzionalità che potete aggiungere sono le seguenti:
 pulsante “leggi di più”, che mostra o nasconde dinamicamente alcuni elementi;
 cambiare una o più immagini della pagina quando l’utente clicca o si muove sopra certi elementi;
 aggiungere una classe “preferito” (con conseguenti modifiche estetiche definite in CSS) quando l’utente clicca su certi elementi della pagina;
-
 conservare informazioni negli attributi data-*, da usare per mostrare dati aggiuntivi quando l’utente clicca o si muove sopra certi elementi.
 */
