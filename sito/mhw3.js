@@ -318,3 +318,9 @@ fetch("https://accounts.spotify.com/api/token", {
  }).then(onTokenResponse).then(onTokenJson);
 
 //  scrivere il codice che cambia src delle immagini della top, cambia il titolo della canzone, e cambia il link
+// fatto
+
+// sistemare il codice
+//altra api 
+// potrei integratre una preview della traccia s eho tempo . anzi meglio cambiare come sceglie la traccia. idealmente una ost 
+// ma devo fare che ne prende una a caso di ogni ost 
