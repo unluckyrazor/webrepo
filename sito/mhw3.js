@@ -95,36 +95,21 @@ header_middle.addEventListener("mouseover", onHover);
 header_middle.addEventListener("mouseleave", onLeave);
 
 
-/* Mini-homework 2
-
-usare document.createElement() per creare dinamicamente oggetti HTML a partire da contenuti definiti in JavaScript; ok 
-modificare dinamicamente l’URL di un’immagine tramite l’attributo src; ok
-modificare dinamicamente la classe degli elementi agendo sulla proprietà classList; ok
-mostrare o nascondere dinamicamente parti della pagina assegnando o rimuovendo classi CSS che modificano la proprietà display; ok
-utilizzare attributi data-*. ok
 
 
 
 
-Alcuni esempi di funzionalità che potete aggiungere sono le seguenti:
 
-pulsante “leggi di più”, che mostra o nasconde dinamicamente alcuni elementi;
-cambiare una o più immagini della pagina quando l’utente clicca o si muove sopra certi elementi;
-aggiungere una classe “preferito” (con conseguenti modifiche estetiche definite in CSS) quando l’utente clicca su certi elementi della pagina;
-conservare informazioni negli attributi data-*, da usare per mostrare dati aggiuntivi quando l’utente clicca o si muove sopra certi elementi.
-*/
+// chiamata api rest igdb 
 
-
-
-/* prova api
-
-chiamata api rest igdb 
-
-const client_id= '4xc9gc11f5vtpv15695cb46blzrf3k';
-const client_secret = 'dcxht65j1e3t9cq1xuwsft71l310eh'
+const twitch_client_id= '4xc9gc11f5vtpv15695cb46blzrf3k';
+const twitch_client_secret = 'e5lhn1beq7gpxca4cilpwyeyt8fjvf';
+const cors_proxy ="https://corsproxy.io/?";
 let token='';
+const platform_id= 167;
+const year_in_ms = 1714936092   ; // maggio 5 24 in ms da epoch
 
-function onTokenResponse(response){
+function onTokenResponseIGDB(response){
     console.log("token ritornato");
     if (!response.ok) {
         console.log("errore dentro")
@@ -133,9 +118,9 @@ function onTokenResponse(response){
     return response.json();
     
     
-}
+} 
 
-function onTokenJson(json){
+function onTokenJsonIGDB(json){
     console.log("json tornato");
     console.log(json);
     if (!json) {
@@ -143,62 +128,148 @@ function onTokenJson(json){
     }
     token=json.access_token;
     console.log(token);
-    
+    prendiIGDB();
 }
 
-function onErrorResponse(failure) {
+function onErrorResponseIGDB(failure) {
     console.log("fallito")
 }
 
-function onResponse(response) {
+function onResponseIGDB(response) {
     console.log("response ritornato 2")
     if(!response.ok) {
         console.log("errore non ok")
     }
     return response.json();
 }
-function onJson(json){
+function onJsonIGDB(json){
     console.log("json ritornato 2")
     console.log(json);
+    return json;
+
 }
-function onError(error) {
+function onErrorIGDB(error) {
     console.log(error);
     console.log("errore");
 }
 
 fetch("https://id.twitch.tv/oauth2/token", {
     method: "post",
-    body: "client_id=4xc9gc11f5vtpv15695cb46blzrf3k&client_secret=dcxht65j1e3t9cq1xuwsft71l310eh&grant_type=client_credentials",
+    body: "client_id=" + twitch_client_id + "&client_secret=" + twitch_client_secret + "&grant_type=client_credentials",
     headers: {
         "Content-Type": "application/x-www-form-urlencoded"
  }
- }).then(onTokenResponse, onErrorResponse).then(onTokenJson);
+ }).then(onTokenResponseIGDB, onErrorResponseIGDB).then(onTokenJsonIGDB);
 
 
 
-fetch("https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/games", {
+function prendiIGDB() {fetch(cors_proxy + "https://api.igdb.com/v4/release_dates/", {
     method: "post",
     
-    body: "fields *;",
+    body: " fields *; where game.platforms = " + platform_id  + " & date>" + year_in_ms + ";sort date asc; limit 5;",
     headers: {
-        "Client-ID": client_id,
-        "Authorization": "Bearer" + token
+        Accept: "application/json",
+        "Client-ID": twitch_client_id,
+        "Authorization": "Bearer " + token
  }
- }).then(onResponse, onError).then(onJson);
-*/
+ }).then(onResponseIGDB, onErrorIGDB).then(onJsonIGDB).then(handleData);
 
- //non posso farlo perche mi da corse error e dovrei fare richieste dal server o da  un proxy icsdi
- 
+}
+
+function prendiGiocoPerID() {
+    const gameIds = gameidList.join(","); // Convert the array to a comma-separated string
+    console.log(gameIds);
+
+    fetch(cors_proxy + "https://api.igdb.com/v4/games/", {
+    method: "post",
+    
+    
+    body: " fields *; where id=(" + 39047 +"); limit 5;",
+    headers: {
+        Accept: "application/json",
+        "Client-ID": twitch_client_id,
+        "Authorization": "Bearer " + token
+ }
+ }).then(onResponseIGDB, onErrorIGDB).then(onJsonIGDB).then(stampaGiochi);
+}
+
+ let gameidList=[]
+
+function handleData(games_by_date){
+    for( let game of games_by_date) {
+        gameidList.push(game.id);
+       
+    }
+    console.log(gameidList);
+    prendiGiocoPerID();
+    
+}
+
+function stampaGiochi(lista_giochi){
+    console.log(lista_giochi);
+    // crea gli elementi dei giochi 
+    for(let gioco of lista_giochi) {
+
+        let nome= document.createElement("div")
+        
+        nome.textContent = gioco.name;
+        let igdb_sect= document.querySelector(".igdb_coming_soon")
+
+        igdb_sect.textContent=gioco.name;
+    }
+}
 
 
- // prova api spotify 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //  api spotify 
+
  const spotify_client_id='5510ef73fb5348c8b8dec19039f1dc9d';
  const spotify_client_secret='2b9a114862484c86bc8fb75c8406fb52';
 
 
- let token_spotify='';
- let album_value='League'
- let spoty_content;
+let token_spotify='';
+let spoty_content;
   
  
 
@@ -238,6 +309,7 @@ function onJson(json){
 }
 
 
+
 function selectTracks(playlist) {
     let selectedTracks = [];
     // prende 5 tracce a caso dalla playlist che riceve e le mette in selectedTracks
@@ -257,17 +329,17 @@ function selectTracks(playlist) {
         
     for (let trackObj of selectedTracks) {
         
+        // assegna per ogni traccia della lista link, immagine, titolo della canzone e li sostituisce agli attributi in html
         
-        console.log(selectedTracks[i])
         let trackLink = trackObj.external_urls.spotify;
         let trackName = trackObj.name;
         let trackImage = trackObj.album.images[1].url;
         console.log("track name", trackName);
         
         
-        trackimageh=trackimageList[i];
-        track=tracklist[i];
-        tracklinkh=tracklinklist[i];
+        let trackimageh=trackimageList[i];
+        let track=tracklist[i];
+        let tracklinkh=tracklinklist[i];
         
 
         trackimageh.src=trackImage;
@@ -280,33 +352,31 @@ function selectTracks(playlist) {
     
     
     }
-        
-    
 
-function HandlePlaylist(playlists) {
+function handlePlaylist(playlists) {
     
-    console.log(playlists.playlists)
+    
     
     if (!playlists.playlists || !playlists.playlists.items || playlists.playlists.items.length === 0) {
         console.error('non ho trovato  playlist');
         return;
     }
     
-// sceglie una playlist a caso
+    // sceglie una playlist a caso
     
     const randomIndex= Math.floor(Math.random() * playlists.playlists.items.length);
-    
     const randomPlaylistId = playlists.playlists.items[randomIndex].id;
     
-    // fetcha tracce
+    // fetcha tracce dalla playlist
+
     fetch('https://api.spotify.com/v1/playlists/'+ randomPlaylistId + '/tracks', {
         headers: {
             "Authorization": "Bearer " + token_spotify
         }
     })
-    .then(response => response.json())
-    .then(selectTracks)
-    ; 
+    .then(onResponse)
+    .then(selectTracks);
+    
 }
 
 
@@ -316,7 +386,7 @@ function prendi() { fetch("https://api.spotify.com/v1/browse/categories/gaming/p
     headers:{
         "Authorization": "Bearer " + token_spotify
     }
-}).then(onResponse).then(onJson).then(HandlePlaylist); }
+}).then(onResponse).then(onJson).then(handlePlaylist); }
 
 // fetcha il token che mi serve
 fetch("https://accounts.spotify.com/api/token", {
@@ -328,10 +398,5 @@ fetch("https://accounts.spotify.com/api/token", {
  }
  }).then(onTokenResponse).then(onTokenJson);
 
-//  scrivere il codice che cambia src delle immagini della top, cambia il titolo della canzone, e cambia il link
-// fatto
 
-// sistemare il codice
-//altra api 
-// potrei integratre una preview della traccia s eho tempo . anzi meglio cambiare come sceglie la traccia. idealmente una ost 
-// ma devo fare che ne prende una a caso di ogni ost 
+// fine api spoty

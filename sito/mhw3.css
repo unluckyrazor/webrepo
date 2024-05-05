@@ -325,7 +325,14 @@ p {
     margin-left: 0px;
 }
 
-
+#igdb_sect{
+    margin: 5px;
+    margin-top: 30px;
+    
+    border-top : 1px solid gray;
+    padding: 15px;
+    font-size: larger;
+}
 
 
 
