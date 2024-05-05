@@ -239,8 +239,14 @@ function onJson(json){
 
 
 function selectTracks(playlist) {
-    const selectedTracks = playlist.items.slice(0, 5); // prende le prime 5
-    console.log('Selected tracks:', selectedTracks);
+    let selectedTracks = [];
+    // prende 5 tracce a caso dalla playlist che riceve e le mette in selectedTracks
+    for (let i=0;i<5;i++){
+    let randomIndex= Math.floor(Math.random() * playlist.items.length);
+    let randomTrack= playlist.items[randomIndex].track;
+    selectedTracks.push(randomTrack); 
+    }
+    console.log('Selected tracks:', selectedTracks);    
 
     const tracklist= document.querySelectorAll(".track_name");
     const tracklinklist=document.querySelectorAll(".spoty_track_link");
@@ -253,9 +259,9 @@ function selectTracks(playlist) {
         
         
         console.log(selectedTracks[i])
-        let trackLink = trackObj.track.external_urls.spotify;
-        let trackName = trackObj.track.name;
-        let trackImage = trackObj.track.album.images[1].url;
+        let trackLink = trackObj.external_urls.spotify;
+        let trackName = trackObj.name;
+        let trackImage = trackObj.album.images[1].url;
         console.log("track name", trackName);
         
         
@@ -278,17 +284,22 @@ function selectTracks(playlist) {
     
 
 function HandlePlaylist(playlists) {
-    // sceglie la playlist 0
+    
     console.log(playlists.playlists)
     
     if (!playlists.playlists || !playlists.playlists.items || playlists.playlists.items.length === 0) {
         console.error('non ho trovato  playlist');
         return;
     }
-
-    const playlistId = playlists.playlists.items[0].id;
+    
+// sceglie una playlist a caso
+    
+    const randomIndex= Math.floor(Math.random() * playlists.playlists.items.length);
+    
+    const randomPlaylistId = playlists.playlists.items[randomIndex].id;
+    
     // fetcha tracce
-    fetch('https://api.spotify.com/v1/playlists/'+ playlistId + '/tracks', {
+    fetch('https://api.spotify.com/v1/playlists/'+ randomPlaylistId + '/tracks', {
         headers: {
             "Authorization": "Bearer " + token_spotify
         }

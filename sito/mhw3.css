@@ -319,7 +319,11 @@ p {
     width: 300px;
 }
 
-
+#tracce{
+    font-style: italic;
+    margin: 20px;
+    margin-left: 0px;
+}
 
 
 
