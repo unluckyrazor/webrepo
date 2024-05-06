@@ -108,6 +108,8 @@ const cors_proxy ="https://corsproxy.io/?";
 let token='';
 const platform_id= 167;
 const year_in_ms = 1714936092   ; // maggio 5 24 in ms da epoch
+let gameidList=[];
+
 
 function onTokenResponseIGDB(response){
     console.log("token ritornato");
@@ -153,6 +155,8 @@ function onErrorIGDB(error) {
     console.log("errore");
 }
 
+
+// fetcha per il token 
 fetch("https://id.twitch.tv/oauth2/token", {
     method: "post",
     body: "client_id=" + twitch_client_id + "&client_secret=" + twitch_client_secret + "&grant_type=client_credentials",
@@ -166,7 +170,7 @@ fetch("https://id.twitch.tv/oauth2/token", {
 function prendiIGDB() {fetch(cors_proxy + "https://api.igdb.com/v4/release_dates/", {
     method: "post",
     
-    body: " fields *; where game.platforms = " + platform_id  + " & date>" + year_in_ms + ";sort date asc; limit 5;",
+    body: " fields *; where date > " + year_in_ms + "; sort date asc; limit 5;",
     headers: {
         Accept: "application/json",
         "Client-ID": twitch_client_id,
@@ -177,14 +181,14 @@ function prendiIGDB() {fetch(cors_proxy + "https://api.igdb.com/v4/release_dates
 }
 
 function prendiGiocoPerID() {
-    const gameIds = gameidList.join(","); // Convert the array to a comma-separated string
+    const gameIds = gameidList.join(","); // converte l'array a csv
     console.log(gameIds);
 
     fetch(cors_proxy + "https://api.igdb.com/v4/games/", {
     method: "post",
     
     
-    body: " fields *; where id=(" + 39047 +"); limit 5;",
+    body: " fields *; where id=(" + gameIds +"); limit 5;",
     headers: {
         Accept: "application/json",
         "Client-ID": twitch_client_id,
@@ -193,11 +197,11 @@ function prendiGiocoPerID() {
  }).then(onResponseIGDB, onErrorIGDB).then(onJsonIGDB).then(stampaGiochi);
 }
 
- let gameidList=[]
+ 
 
 function handleData(games_by_date){
     for( let game of games_by_date) {
-        gameidList.push(game.id);
+        gameidList.push(game.game);
        
     }
     console.log(gameidList);
@@ -215,13 +219,13 @@ function stampaGiochi(lista_giochi){
         nome.textContent = gioco.name;
         let igdb_sect= document.querySelector(".igdb_coming_soon")
 
-        igdb_sect.textContent=gioco.name;
+        igdb_sect.appendChild(nome);
     }
 }
 
 
 
-
+// fine api igdb
 
 
 
